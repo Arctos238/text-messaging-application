@@ -25,6 +25,7 @@ public class ApplicationManager {
 		
 		mainMenu();
 		
+		System.out.println("test");
 		ioManager.persistFile(contacts);
 	}
 
