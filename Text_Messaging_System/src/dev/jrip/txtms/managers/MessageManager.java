@@ -31,6 +31,7 @@ public class MessageManager {
 			String messageBody = createMessage();
 			Message message = new Message(messageBody);
 			contact.addMessage(message);
+			contact.incrementNumberOfMessages();
 		}
 	}
 	
@@ -62,7 +63,6 @@ public class MessageManager {
 
 	public void addMessage(Message message, Contact contact) {
 		contact.getMessages().add(message);
-		contact.incrementNumberOfMessages();
 	}
 	
 	public void showAllMessages(ArrayList<Contact> contacts) {
