@@ -14,21 +14,25 @@ public class ContactManager {
 		stringInput = new Scanner(System.in);
 	}
 
-	public void addContact(ArrayList<Contact> contacts) throws ContactAlreadyExistsException, InvalidContactNumberLengthException {
+	public void addContact(ArrayList<Contact> contacts)
+			throws ContactAlreadyExistsException, InvalidContactNumberLengthException {
 		String contactName = getContactName();
 
-		int contactNumber = getContactNumber();
+		long contactNumber = getContactNumber();
 
 		for (int i = 0; i < contacts.size(); i++) {
 			Contact contact = contacts.get(i);
 
 			if (contact.getContactName().equals(contactName) && contact.getContactNumber() == contactNumber) {
 				throw new ContactAlreadyExistsException(contact);
-			} else {
-				Contact newContact = new Contact(contactName, contactNumber);
-				contacts.add(newContact);
 			}
 		}
+
+		Contact newContact = new Contact(contactName, contactNumber);
+		contacts.add(newContact);
+		
+		System.out.println();
+
 	}
 
 	private String getContactName() {
@@ -36,9 +40,9 @@ public class ContactManager {
 		return stringInput.nextLine();
 	}
 
-	private int getContactNumber() throws InvalidContactNumberLengthException {
+	private long getContactNumber() throws InvalidContactNumberLengthException {
 		System.out.print("Enter the contacts number: ");
-		int contactNumber = numberInput.nextInt();
+		long contactNumber = numberInput.nextLong();
 		String contactNumberString = contactNumber + "";
 
 		if (contactNumberString.length() == 10) {
@@ -49,9 +53,53 @@ public class ContactManager {
 
 	}
 
-	public void showAllContacts() {
-		// TODO Auto-generated method stub
-
+	public void showAllContacts(ArrayList<Contact> contacts) {
+		if (contacts == null) {
+			System.out.println("You have no contacts\n");
+		} else {
+			for (int i = 0; i < contacts.size(); i++) {
+				System.out.println(contacts.get(i));
+			}
+		}
 	}
 
+	public void searchForContact(ArrayList<Contact> contacts) {
+		Contact contact = retrieveContact(contacts);
+		
+		if (contact == null) {
+			System.out.println("\nNo Contact Found with That Name\n");
+		} else {
+			System.out.println(contact + "\n");
+		}
+		
+	}
+
+	public void deleteContact(ArrayList<Contact> contacts) {
+		Contact contact = retrieveContact(contacts);
+		
+		if (contact == null) {
+			System.out.println("\nNo Contact Found with That Name\n");
+		} else {
+			System.out.println(contact + "\nHas been Deleted\n");
+		}
+		
+	}
+	
+	private Contact retrieveContact(ArrayList<Contact> contacts) {
+		System.out.print("Enter Contact Name: ");
+		String contactName = stringInput.nextLine();
+		System.out.println();
+		
+		Contact contact = null;
+		
+		for(int i = 0; i < contacts.size(); i++) {
+			Contact tempContact = contacts.get(i);
+			
+			if(tempContact.getContactName().equals(contactName)) {
+				contact = tempContact;
+			}
+		}
+		
+		return contact;
+	}
 }

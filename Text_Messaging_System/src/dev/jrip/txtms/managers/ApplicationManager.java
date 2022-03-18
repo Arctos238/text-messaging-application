@@ -1,5 +1,6 @@
 package dev.jrip.txtms.managers;
 
+import java.io.*;
 import java.util.*;
 
 import dev.jrip.txtms.problemdomain.*;
@@ -21,10 +22,13 @@ public class ApplicationManager {
 		contactManager = new ContactManager();
 		ioManager = new IOManager();
 		
-		contacts = ioManager.populateContactsFromBinary();
-		
+		try {
+			contacts = ioManager.populateContactsFromBinary();
+		} catch (IOException e) {
+			contacts = new ArrayList<Contact>();
+		}
+
 		mainMenu();
-		
 
 		ioManager.persistFile(contacts);
 	}
@@ -47,43 +51,36 @@ public class ApplicationManager {
 		}
 
 	}
-	
+
 	private void contactMenu() {
-		
+
 		int optionSelected = contactOptions();
 
 		while (optionSelected != NUMBER_OF_CONTACT_MENU_OPTIONS) {
 
 			switch (optionSelected) {
-			
-			case 1:
-				contactManager.showAllContacts();
-				break;
-				
-			case 2:
-				try {
-					contactManager.addContact(contacts);
-				} catch (ContactAlreadyExistsException e) {
-					System.out.println(e.getMessage());
-				} catch (InvalidContactNumberLengthException e) {
-					System.out.println(e.getMessage() + "\n");
-				}
-				break;
-				
-			case 3:
-				
+				case 1:
+					contactManager.showAllContacts(contacts);
+					break;
+				case 2:
+					try {
+						contactManager.addContact(contacts);
+					} catch (ContactAlreadyExistsException e) {
+						System.out.println(e.getMessage() + "\n");
+					} catch (InvalidContactNumberLengthException e) {
+						System.out.println(e.getMessage() + "\n");
+					}
+					break;
+				case 3:
+					contactManager.searchForContact(contacts);
+					break;
+				case 4:
+					contactManager.deleteContact(contacts);
+					break;
 			}
 
 			optionSelected = contactOptions();
 		}
-
-		
-		
-		
-	}
-
-	private void messageMenu() {
-		contactOptions();
 	}
 
 	private int contactOptions() {
@@ -110,8 +107,30 @@ public class ApplicationManager {
 				optionNumber = 0;
 			}
 		}
-		
+
 		return selection;
+	}
+
+	private void messageMenu() {
+		
+		int optionSelected =messageOptions();
+
+		while (optionSelected != NUMBER_OF_MAIN_MENU_OPTIONS) {
+
+			switch (optionSelected) {
+
+			case 1:
+				messageManager.showAllMessages(contacts);
+				break;
+
+			case 2:
+				messageManager.sendNewMessage(contacts);
+				break;
+			}
+
+			optionSelected = messageOptions();
+		}
+
 	}
 
 	private int messageOptions() {
@@ -121,9 +140,9 @@ public class ApplicationManager {
 
 		while (!inputValid) {
 			System.out.print("Text Messaging System\nOptions Available:\n");
-			System.out.printf("%-1d:%-20s%n", optionNumber += 1, "Manage Contacts");
-			System.out.printf("%-1d:%-20s%n", optionNumber += 1, "Messages");
-			System.out.printf("%-1d:%-20s%n", optionNumber += 1, "Quit");
+			System.out.printf("%-1d:%-20s%n", optionNumber += 1, "See The List Of All Messages");
+			System.out.printf("%-1d:%-20s%n", optionNumber += 1, "Send a new message");
+			System.out.printf("%-1d:%-20s%n", optionNumber += 1, "Go Back To The Previous Menu");
 
 			System.out.print("\nEnter Your Selection: ");
 			selection = numberScanner.nextInt();
@@ -136,7 +155,7 @@ public class ApplicationManager {
 				optionNumber = 0;
 			}
 		}
-		
+
 		return selection;
 	}
 
@@ -166,4 +185,5 @@ public class ApplicationManager {
 
 		return selection;
 	}
+	
 }

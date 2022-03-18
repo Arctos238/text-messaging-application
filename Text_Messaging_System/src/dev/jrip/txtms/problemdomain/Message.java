@@ -4,17 +4,18 @@ import java.util.*;
 
 public class Message {
 	private String bodyOfMessage;
-	private Date sentDate;
 	private int messageSerialCode;
 	
 	public Message (String bodyOfMessage) {
 		
 		this.bodyOfMessage = bodyOfMessage;
 		this.messageSerialCode = generateSerialCode();
-		sentDate = new Date();
 	}
 	
-
+	public Message (String bodyOfMessage, int messageSerialCode) {
+		this.bodyOfMessage = bodyOfMessage;
+		this.messageSerialCode = messageSerialCode;
+	}
 	public String getBodyOfMessage() {
 		
 		return bodyOfMessage;
@@ -31,7 +32,7 @@ public class Message {
 	
 	@Override
 	public String toString() {
-		return "Sent: " + this.sentDate + "\n" + "Message: " + this.bodyOfMessage + "\n";
+		return "Message: " + this.bodyOfMessage + "\n";
 	}
 	
 }
