@@ -2,7 +2,7 @@ package dev.jrip.txtms.problemdomain;
 
 import java.util.*;
 
-public class Message {
+public abstract class Message {
 	private String bodyOfMessage;
 	private int messageSerialCode;
 	
@@ -16,6 +16,7 @@ public class Message {
 		this.bodyOfMessage = bodyOfMessage;
 		this.messageSerialCode = messageSerialCode;
 	}
+	
 	public String getBodyOfMessage() {
 		
 		return bodyOfMessage;

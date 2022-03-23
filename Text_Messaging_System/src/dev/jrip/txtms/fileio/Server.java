@@ -7,6 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
+	
     public static void main(String[] args) throws IOException {
         // don't need to specify a hostname, it will be the current machine
         ServerSocket ss = new ServerSocket(7776);

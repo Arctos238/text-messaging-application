@@ -13,24 +13,21 @@ public class ApplicationManager {
 
 	Scanner numberScanner = new Scanner(System.in);
 	private ArrayList<Contact> contacts;
-	private IOManager ioManager;
+//	private IOManager ioManager;
 	private MessageManager messageManager;
 	private ContactManager contactManager;
 
 	public ApplicationManager() {
 		messageManager = new MessageManager();
 		contactManager = new ContactManager();
-		ioManager = new IOManager();
+//		ioManager = new IOManager();
 		
-		try {
-			contacts = ioManager.populateContactsFromBinary();
-		} catch (IOException e) {
-			contacts = new ArrayList<Contact>();
-		}
+		contacts = new ArrayList<Contact>();
+//			contacts = ioManager.populateContactsFromBinary();
 
 		mainMenu();
 
-		ioManager.persistFile(contacts);
+//		ioManager.persistFile(contacts);
 	}
 
 	private void mainMenu() {

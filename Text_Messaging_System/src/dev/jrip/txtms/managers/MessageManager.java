@@ -2,8 +2,7 @@ package dev.jrip.txtms.managers;
 
 import java.util.*;
 
-import dev.jrip.txtms.problemdomain.Contact;
-import dev.jrip.txtms.problemdomain.Message;
+import dev.jrip.txtms.problemdomain.*;
 
 public class MessageManager {
 	private Scanner stringInput;
@@ -29,7 +28,7 @@ public class MessageManager {
 			
 		} else {
 			String messageBody = createMessage();
-			Message message = new Message(messageBody);
+			Message message = new SentMessage(messageBody);
 			contact.addMessage(message);
 			contact.incrementNumberOfMessages();
 		}
