@@ -18,7 +18,7 @@ public class MariaDBDriver implements DatabaseDriver {
 				USERNAME, PASSWORD);
 
 		connection = DriverManager.getConnection(DB_URL);
-
+		
 	}
 
 	@Override
@@ -50,4 +50,10 @@ public class MariaDBDriver implements DatabaseDriver {
 
 	}
 	
+	public static void main(String[] args) throws SQLException {
+		MariaDBDriver db = new MariaDBDriver();
+		
+		db.connect();
+
+	}
 }
