@@ -30,7 +30,7 @@ public class ContactManager {
 
 		Contact newContact = new Contact(contactName, contactNumber);
 		contacts.add(newContact);
-		
+
 		System.out.println();
 
 	}
@@ -65,41 +65,41 @@ public class ContactManager {
 
 	public void searchForContact(ArrayList<Contact> contacts) {
 		Contact contact = retrieveContact(contacts);
-		
+
 		if (contact == null) {
 			System.out.println("\nNo Contact Found with That Name\n");
 		} else {
 			System.out.println(contact + "\n");
 		}
-		
+
 	}
 
 	public void deleteContact(ArrayList<Contact> contacts) {
 		Contact contact = retrieveContact(contacts);
-		
+
 		if (contact == null) {
 			System.out.println("\nNo Contact Found with That Name\n");
 		} else {
 			System.out.println(contact + "\nHas been Deleted\n");
 		}
-		
+
 	}
-	
+
 	private Contact retrieveContact(ArrayList<Contact> contacts) {
 		System.out.print("Enter Contact Name: ");
 		String contactName = stringInput.nextLine();
 		System.out.println();
-		
+
 		Contact contact = null;
-		
-		for(int i = 0; i < contacts.size(); i++) {
+
+		for (int i = 0; i < contacts.size(); i++) {
 			Contact tempContact = contacts.get(i);
-			
-			if(tempContact.getContactName().equals(contactName)) {
+
+			if (tempContact.getContactName().equals(contactName)) {
 				contact = tempContact;
 			}
 		}
-		
+
 		return contact;
 	}
 }

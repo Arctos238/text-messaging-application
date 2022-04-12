@@ -21,7 +21,7 @@ public class ApplicationManager {
 		messageManager = new MessageManager();
 		contactManager = new ContactManager();
 //		ioManager = new IOManager();
-		
+
 		contacts = new ArrayList<Contact>();
 //			contacts = ioManager.populateContactsFromBinary();
 
@@ -56,24 +56,24 @@ public class ApplicationManager {
 		while (optionSelected != NUMBER_OF_CONTACT_MENU_OPTIONS) {
 
 			switch (optionSelected) {
-				case 1:
-					contactManager.showAllContacts(contacts);
-					break;
-				case 2:
-					try {
-						contactManager.addContact(contacts);
-					} catch (ContactAlreadyExistsException e) {
-						System.out.println(e.getMessage() + "\n");
-					} catch (InvalidContactNumberLengthException e) {
-						System.out.println(e.getMessage() + "\n");
-					}
-					break;
-				case 3:
-					contactManager.searchForContact(contacts);
-					break;
-				case 4:
-					contactManager.deleteContact(contacts);
-					break;
+			case 1:
+				contactManager.showAllContacts(contacts);
+				break;
+			case 2:
+				try {
+					contactManager.addContact(contacts);
+				} catch (ContactAlreadyExistsException e) {
+					System.out.println(e.getMessage() + "\n");
+				} catch (InvalidContactNumberLengthException e) {
+					System.out.println(e.getMessage() + "\n");
+				}
+				break;
+			case 3:
+				contactManager.searchForContact(contacts);
+				break;
+			case 4:
+				contactManager.deleteContact(contacts);
+				break;
 			}
 
 			optionSelected = contactOptions();
@@ -109,8 +109,8 @@ public class ApplicationManager {
 	}
 
 	private void messageMenu() {
-		
-		int optionSelected =messageOptions();
+
+		int optionSelected = messageOptions();
 
 		while (optionSelected != NUMBER_OF_MAIN_MENU_OPTIONS) {
 
@@ -182,5 +182,5 @@ public class ApplicationManager {
 
 		return selection;
 	}
-	
+
 }
