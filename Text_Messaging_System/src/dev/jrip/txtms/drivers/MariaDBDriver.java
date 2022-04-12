@@ -30,7 +30,7 @@ public class MariaDBDriver implements DatabaseDriver {
 		disconnect();
 
 		return resultSet;
-		a
+		
 	}
 
 	@Override
