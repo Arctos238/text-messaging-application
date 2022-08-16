@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -16,7 +17,9 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 
 public class LoginWindow extends Application {
-
+	Alert a = new Alert(AlertType.NONE);
+	TextField textField;
+	
 	public void start(Stage stage) {
 		// Creating a Label
 		Label label = new Label("Sample label");
@@ -27,8 +30,10 @@ public class LoginWindow extends Application {
 		label.setTranslateY(25);
 
 		Label label1 = new Label("Name:");
-		TextField textField = new TextField();
+		textField = new TextField();
 		Button button = new Button("Test");
+		button.setTranslateX(120);
+		button.setTranslateY(30);
 		button.setStyle("-fx-background-color: #333333; -fx-text-fill: #FFFFFF ");
 		button.setOnAction(new HelloEventHandler());
 
@@ -55,7 +60,10 @@ public class LoginWindow extends Application {
 
 		@Override
 		public void handle(Event arg0) {
-
+			a.setAlertType(AlertType.INFORMATION);
+			a.setContentText(textField.getText());
+			
+			a.show();
 		}
 
 	}
