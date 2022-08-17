@@ -75,7 +75,7 @@ public class LoginWindow extends Application {
 				a.setAlertType(AlertType.ERROR);
 				a.setContentText("Phone Number or Password Field was left blank");
 				a.show();
-			}
+			}a
 			
 			
 			
