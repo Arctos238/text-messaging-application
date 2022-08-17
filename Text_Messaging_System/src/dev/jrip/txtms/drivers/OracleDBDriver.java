@@ -62,7 +62,6 @@ public class OracleDBDriver implements DatabaseDriver {
 		}
 		
 		db.disconnect();
-		db.disconnect();
 
 	}
 }
