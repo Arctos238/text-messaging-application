@@ -6,7 +6,7 @@ import java.util.*;
 import dev.jrip.txtms.problemdomain.*;
 import dev.jrip.txtms.exception.*;
 
-public class ApplicationManager {
+public class CLIApplicationManager {
 	private static final int NUMBER_OF_MAIN_MENU_OPTIONS = 3;
 	private static final int NUMBER_OF_CONTACT_MENU_OPTIONS = 5;
 	private static final int NUMBER_OF_MESSAGE_MENU_OPTIONS = 3;
@@ -17,7 +17,7 @@ public class ApplicationManager {
 	private MessageManager messageManager;
 	private ContactManager contactManager;
 
-	public ApplicationManager() {
+	public CLIApplicationManager() {
 		messageManager = new MessageManager();
 		contactManager = new ContactManager();
 //		ioManager = new IOManager();
